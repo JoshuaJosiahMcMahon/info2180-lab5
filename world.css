@@ -1,1 +1,284 @@
-/* Add your own styles */
+@import url('https://fonts.googleapis.com/css2?family=Ninja+Naruto&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', sans-serif;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 107, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 50%, #0d0d0d 100%);
+    min-height: 100vh;
+    color: #e4e4e4;
+    padding: 20px;
+    background-attachment: fixed;
+}
+
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 5 C35 15 45 20 45 30 C45 40 35 50 30 55 C25 50 15 40 15 30 C15 20 25 15 30 5' fill='none' stroke='%23ff6b0015' stroke-width='1'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+}
+
+header {
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #ff6b00;
+    text-shadow: 
+        3px 3px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        0 0 30px rgba(255, 107, 0, 0.5);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+header h1::before {
+    content: '🍥 ';
+}
+
+header h1::after {
+    content: ' 🍥';
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+#controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 25px;
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+    border-radius: 12px;
+    border: 2px solid #ff6b00;
+    box-shadow: 
+        0 0 20px rgba(255, 107, 0, 0.2),
+        inset 0 0 30px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+
+#controls::before {
+    content: '忍';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, #4a4a4a 0%, #2a2a2a 100%);
+    color: #ff6b00;
+    padding: 5px 20px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 2px solid #ff6b00;
+    box-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+}
+
+#controls label {
+    font-size: 1.2rem;
+    color: #ff9500;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#controls input[type="search"] {
+    padding: 14px 20px;
+    font-size: 1rem;
+    border: 2px solid #ff6b00;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    width: 300px;
+    transition: all 0.3s ease;
+}
+
+#controls input[type="search"]:focus {
+    outline: none;
+    border-color: #ff9500;
+    box-shadow: 
+        0 0 20px rgba(255, 107, 0, 0.5),
+        0 0 40px rgba(255, 107, 0, 0.2);
+}
+
+#controls input[type="search"]::placeholder {
+    color: #666;
+    font-style: italic;
+}
+
+#lookup {
+    padding: 14px 35px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    background: linear-gradient(180deg, #ff6b00 0%, #cc5500 50%, #ff6b00 100%);
+    color: #000;
+    border: 2px solid #ff9500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+#lookup::before {
+    content: '🌀';
+    margin-right: 8px;
+}
+
+#lookup:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 5px 25px rgba(255, 107, 0, 0.6),
+        0 0 50px rgba(255, 107, 0, 0.3);
+    background: linear-gradient(180deg, #ff9500 0%, #ff6b00 50%, #ff9500 100%);
+}
+
+#lookup:active {
+    transform: translateY(0) scale(1);
+}
+
+#result {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(20, 20, 20, 0.95) 100%);
+    border-radius: 12px;
+    border: 2px solid #333;
+    padding: 20px;
+    min-height: 100px;
+    position: relative;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+#result::before {
+    content: '📜 Ninja World Records';
+    display: block;
+    text-align: center;
+    color: #ff6b00;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+}
+
+#result ul {
+    list-style: none;
+}
+
+#result li {
+    padding: 15px 20px;
+    margin: 10px 0;
+    background: linear-gradient(90deg, rgba(255, 107, 0, 0.15) 0%, rgba(0, 0, 0, 0.5) 100%);
+    border-left: 4px solid #ff6b00;
+    border-radius: 0 8px 8px 0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+#result li::before {
+    content: '🔥';
+    margin-right: 10px;
+}
+
+#result li:hover {
+    background: linear-gradient(90deg, rgba(255, 107, 0, 0.3) 0%, rgba(255, 107, 0, 0.1) 100%);
+    transform: translateX(10px);
+    border-left-color: #ff9500;
+    box-shadow: 0 0 15px rgba(255, 107, 0, 0.2);
+}
+
+#result li:nth-child(odd) {
+    border-left-color: #dc2626;
+}
+
+#result li:nth-child(odd)::before {
+    content: '🌀';
+}
+
+#result p {
+    text-align: center;
+    color: #888;
+    padding: 20px;
+}
+
+/* Chakra loading animation */
+@keyframes chakraGlow {
+    0%, 100% { box-shadow: 0 0 5px #ff6b00, 0 0 10px #ff6b00; }
+    50% { box-shadow: 0 0 20px #ff6b00, 0 0 40px #ff9500; }
+}
+
+#lookup:focus {
+    animation: chakraGlow 1.5s infinite;
+}
+
+
+@keyframes rasengan {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    header h1::before,
+    header h1::after {
+        content: '';
+    }
+
+    #controls {
+        flex-direction: column;
+        padding-top: 35px;
+    }
+
+    #controls input[type="search"] {
+        width: 100%;
+    }
+
+    #lookup {
+        width: 100%;
+    }
+}
+
+
+#result:empty::after {
+    content: 'Enter a village name to begin your search, dattebayo!';
+    display: block;
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 30px;
+}
