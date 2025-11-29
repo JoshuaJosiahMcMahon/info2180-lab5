@@ -63,7 +63,7 @@ header h1::after {
 }
 
 main {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
@@ -135,8 +135,13 @@ main {
     font-style: italic;
 }
 
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
 #lookup {
-    padding: 14px 35px;
+    padding: 14px 25px;
     font-size: 1.1rem;
     font-weight: 800;
     background: linear-gradient(180deg, #ff6b00 0%, #cc5500 50%, #ff6b00 100%);
@@ -146,14 +151,14 @@ main {
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     position: relative;
     overflow: hidden;
 }
 
 #lookup::before {
     content: '🌀';
-    margin-right: 8px;
+    margin-right: 6px;
 }
 
 #lookup:hover {
@@ -166,6 +171,48 @@ main {
 
 #lookup:active {
     transform: translateY(0) scale(1);
+}
+
+#lookup-cities {
+    padding: 14px 25px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    background: linear-gradient(180deg, #dc2626 0%, #991b1b 50%, #dc2626 100%);
+    color: #fff;
+    border: 2px solid #ef4444;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+#lookup-cities::before {
+    content: '🏯';
+    margin-right: 8px;
+}
+
+#lookup-cities:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 5px 25px rgba(220, 38, 38, 0.6),
+        0 0 50px rgba(220, 38, 38, 0.3);
+    background: linear-gradient(180deg, #ef4444 0%, #dc2626 50%, #ef4444 100%);
+}
+
+#lookup-cities:active {
+    transform: translateY(0) scale(1);
+}
+
+#lookup-cities:focus {
+    animation: sharinganGlow 1.5s infinite;
+}
+
+@keyframes sharinganGlow {
+    0%, 100% { box-shadow: 0 0 5px #dc2626, 0 0 10px #dc2626; }
+    50% { box-shadow: 0 0 20px #dc2626, 0 0 40px #ef4444; }
 }
 
 #result {
@@ -192,38 +239,57 @@ main {
     border-bottom: 1px solid #333;
 }
 
-#result ul {
-    list-style: none;
+#result table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
 }
 
-#result li {
-    padding: 15px 20px;
-    margin: 10px 0;
-    background: linear-gradient(90deg, rgba(255, 107, 0, 0.15) 0%, rgba(0, 0, 0, 0.5) 100%);
-    border-left: 4px solid #ff6b00;
-    border-radius: 0 8px 8px 0;
+#result thead {
+    background: linear-gradient(180deg, #ff6b00 0%, #cc5500 100%);
+}
+
+#result th {
+    padding: 15px 12px;
+    text-align: left;
+    color: #000;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    border-bottom: 3px solid #ff9500;
+}
+
+#result td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
+    color: #e4e4e4;
+}
+
+#result tbody tr {
+    background: rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
-    position: relative;
 }
 
-#result li::before {
-    content: '🔥';
-    margin-right: 10px;
+#result tbody tr:nth-child(odd) {
+    background: rgba(255, 107, 0, 0.08);
 }
 
-#result li:hover {
-    background: linear-gradient(90deg, rgba(255, 107, 0, 0.3) 0%, rgba(255, 107, 0, 0.1) 100%);
-    transform: translateX(10px);
-    border-left-color: #ff9500;
+#result tbody tr:hover {
+    background: rgba(255, 107, 0, 0.2);
+    transform: scale(1.01);
     box-shadow: 0 0 15px rgba(255, 107, 0, 0.2);
 }
 
-#result li:nth-child(odd) {
-    border-left-color: #dc2626;
+#result tbody tr:hover td {
+    color: #ff9500;
 }
 
-#result li:nth-child(odd)::before {
-    content: '🌀';
+#result .no-results {
+    text-align: center;
+    color: #888;
+    padding: 30px;
+    font-style: italic;
 }
 
 #result p {
@@ -232,7 +298,6 @@ main {
     padding: 20px;
 }
 
-/* Chakra loading animation */
 @keyframes chakraGlow {
     0%, 100% { box-shadow: 0 0 5px #ff6b00, 0 0 10px #ff6b00; }
     50% { box-shadow: 0 0 20px #ff6b00, 0 0 40px #ff9500; }
@@ -248,7 +313,6 @@ main {
     to { transform: rotate(360deg); }
 }
 
-/* Responsive design */
 @media (max-width: 600px) {
     header h1 {
         font-size: 1.6rem;
@@ -268,8 +332,28 @@ main {
         width: 100%;
     }
 
-    #lookup {
+    .button-group {
+        flex-direction: column;
         width: 100%;
+    }
+
+    #lookup,
+    #lookup-cities {
+        width: 100%;
+    }
+
+    #result {
+        padding: 10px;
+        overflow-x: auto;
+    }
+
+    #result table {
+        font-size: 0.85rem;
+    }
+
+    #result th,
+    #result td {
+        padding: 8px 6px;
     }
 }
 

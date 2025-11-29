@@ -1,11 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
     const lookupButton = document.getElementById("lookup");
+    const lookupCitiesButton = document.getElementById("lookup-cities");
     const countryInput = document.getElementById("country");
     const resultDiv = document.getElementById("result");
 
-    lookupButton.addEventListener("click", function() {
+    function fetchData(lookupType) {
         const country = countryInput.value;
-        const url = "world.php?country=" + encodeURIComponent(country);
+        let url = "world.php?country=" + encodeURIComponent(country);
+
+        if (lookupType === "cities") {
+            url += "&lookup=cities";
+        }
 
         fetch(url)
             .then(function(response) {
@@ -17,6 +22,14 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(function(error) {
                 resultDiv.innerHTML = "<p>Error fetching data: " + error + "</p>";
             });
+    }
+
+    lookupButton.addEventListener("click", function() {
+        fetchData("countries");
+    });
+
+    lookupCitiesButton.addEventListener("click", function() {
+        fetchData("cities");
     });
 
     countryInput.addEventListener("keypress", function(event) {
@@ -25,4 +38,3 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
-
